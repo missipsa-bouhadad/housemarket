@@ -72,8 +72,13 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
 
           {/* Buttons */}
           <div className="hidden lg:flex gap-4 items-center">
-            <Button variant="primary">Login</Button>
-            <Button variant="primary" icon={<FaHome />}>
+            <Button variant={isTransparent ? "primary" : "outline"}>
+              Login
+            </Button>
+            <Button
+              variant={isTransparent ? "primary" : "outline"}
+              icon={<FaHome />}
+            >
               Add proprety
             </Button>
           </div>

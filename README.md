@@ -3,6 +3,9 @@
 
 ![Capture d'écran de la page d'accueil](.github/screenshots/home.png)
 
+![Capture d'écran de section propriétés récentes](.github/screenshots/recent_propreties.png)
+  *Section des propriétés récentes*
+
 ## Stack technique
 
 | Type           | Outil / Librairie                       |

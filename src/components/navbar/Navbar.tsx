@@ -13,7 +13,7 @@ interface NavbarProps {
   variant?: "solid" | "transparent";
 }
 
-const navLinks = ["Home", "Propreties", "MarketPlace"];
+export const navLinks = ["Home", "Propreties", "MarketPlace"];
 
 export default function Navbar({ variant = "transparent" }: NavbarProps) {
   const isTransparent = variant === "transparent";

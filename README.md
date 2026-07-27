@@ -1,6 +1,8 @@
 # House Market
 >  Trouvez votre prochain bien immobilier : appartements, maisons et villas à acheter ou à louer sur House Market.
 
+![Capture d'écran de la page d'accueil](.github/screenshots/home.png)
+
 ## Stack technique
 
 | Type           | Outil / Librairie                       |

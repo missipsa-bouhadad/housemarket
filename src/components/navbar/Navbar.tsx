@@ -13,7 +13,7 @@ interface NavbarProps {
   variant?: "solid" | "transparent";
 }
 
-export const navLinks = ["Home", "Propreties", "MarketPlace"];
+export const navLinks = ["Home", "Properties", "MarketPlace"];
 
 export default function Navbar({ variant = "transparent" }: NavbarProps) {
   const isTransparent = variant === "transparent";
@@ -79,7 +79,7 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
               variant={isTransparent ? "primary" : "outline"}
               icon={<FaHome />}
             >
-              Add proprety
+              Add property
             </Button>
           </div>
 
@@ -129,7 +129,7 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
                   variant={isTransparent ? "primary" : "outline"}
                   icon={<FaHome />}
                 >
-                  Add proprety
+                  Add property
                 </Button>
               </div>
             </div>

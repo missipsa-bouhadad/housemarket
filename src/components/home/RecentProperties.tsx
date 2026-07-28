@@ -1,6 +1,5 @@
-import { propreties } from "@/constants/dummyPropreties";
+import { properties } from "@/constants/dummyProperties";
 import PropertyCard from "../properties/PropertyCard";
-
 
 export default function () {
   return (
@@ -12,7 +11,7 @@ export default function () {
             New Listings
           </p>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Discover Recently Added Propreties
+            Discover Recently Added Properties
           </h2>
           <p className="mt-5 mb-10 text-primary">
             Browse the latest homes, apartments, villas, and investment
@@ -21,10 +20,10 @@ export default function () {
           </p>
         </div>
 
-        {/* propreties grid */}
+        {/* properties grid */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {propreties.map((property)=>(
-            <PropertyCard key={property.id} property={property}/>
+          {properties.map((property) => (
+            <PropertyCard key={property.id} property={property} />
           ))}
         </div>
       </div>

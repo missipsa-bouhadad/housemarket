@@ -3,7 +3,7 @@
 
 ![Capture d'écran de la page d'accueil](.github/screenshots/home.png)
 
-![Capture d'écran de section propriétés récentes](.github/screenshots/recent_propreties.png)
+![Capture d'écran de section propriétés récentes](.github/screenshots/recent_properties.png)
   *Section des propriétés récentes*
 
 ## Stack technique
@@ -27,7 +27,7 @@ housemarket/
 │       ├── house_cover.png        # Image de fond du hero
 │       ├── icon.png               # Icone du footer
 │       ├── logo.png               # Logo du site
-│       └── propreties/            # Photos des annonces
+│       └── properties/            # Photos des annonces
 │           ├── image1.jpg … image6.jpg
 ├── src/
 │   ├── app/
@@ -39,7 +39,7 @@ housemarket/
 │   │   ├── general/
 │   │   │   └── Footer.tsx
 │   │   ├── home/
-│   │   │   ├── RecentPropreties.tsx
+│   │   │   ├── RecentProperties.tsx
 │   │   │   └── SearchBox.tsx
 │   │   ├── layout/
 │   │   │   └── FrontendLayout.tsx
@@ -50,7 +50,7 @@ housemarket/
 │   │   └── ui/
 │   │       └── Button.tsx
 │   ├── constants/
-│   │   └── dummyPropreties.tsx    # Jeu de données (6 annonces )
+│   │   └── dummyProperties.tsx    # Jeu de données (6 annonces )
 │   └── types/
 │       └── property.tsx           # Modèle (interface) d'une propriété
 ├── eslint.config.mjs

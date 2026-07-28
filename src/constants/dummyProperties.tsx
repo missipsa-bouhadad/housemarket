@@ -1,4 +1,4 @@
-export const propreties = [
+export const properties = [
   {
     id: "1",
     title: "Villa Azur avec Piscine",
@@ -10,7 +10,7 @@ export const propreties = [
     bathrooms: 3,
     area: 220,
     featured: true,
-    image: "/images/propreties/image1.jpg",
+    image: "/images/properties/image1.jpg",
     description:
       "Stunning villa with private pool, panoramic sea views, and landscaped garden in the heart of the French Riviera.",
   },
@@ -25,7 +25,7 @@ export const propreties = [
     bathrooms: 1,
     area: 95,
     featured: false,
-    image: "/images/propreties/image2.jpg",
+    image: "/images/properties/image2.jpg",
     description:
       "Converted industrial loft with exposed brick walls, high ceilings, and large windows in a trendy Berlin district.",
   },
@@ -40,7 +40,7 @@ export const propreties = [
     bathrooms: 2,
     area: 140,
     featured: true,
-    image: "/images/propreties/image3.jpg",
+    image: "/images/properties/image3.jpg",
     description:
       "Charming wooden chalet with fireplace, mountain views, and ski-in access, perfect for winter getaways.",
   },
@@ -55,7 +55,7 @@ export const propreties = [
     bathrooms: 1,
     area: 32,
     featured: false,
-    image: "/images/propreties/image4.jpg",
+    image: "/images/properties/image4.jpg",
     description:
       "Bright and functional studio located steps from shops, restaurants, and public transport in downtown Lyon.",
   },
@@ -70,7 +70,7 @@ export const propreties = [
     bathrooms: 3,
     area: 180,
     featured: false,
-    image: "/images/propreties/image5.jpg",
+    image: "/images/properties/image5.jpg",
     description:
       "Spacious family home with a large private garden, garage, and quiet residential setting near top schools.",
   },
@@ -85,7 +85,7 @@ export const propreties = [
     bathrooms: 4,
     area: 260,
     featured: true,
-    image: "/images/propreties/image6.jpg",
+    image: "/images/properties/image6.jpg",
     description:
       "Exclusive rooftop penthouse with 360-degree city and sea views, private terrace, and premium finishes throughout.",
   },

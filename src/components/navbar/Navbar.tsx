@@ -23,7 +23,7 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
     <section
       className={clsx("top-0 left-0 z-50 w-full", {
         absolute: isTransparent,
-        "sticky border-b border-black bg-card": !isTransparent,
+        "sticky border-b border-white/70 bg-card": !isTransparent,
       })}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">

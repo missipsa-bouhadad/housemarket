@@ -26,7 +26,7 @@ export default function Modal({
   return (
     <div
       aria-hidden={!isOpen}
-      className={`fixed z-50 inset-0 flex items-center justify-center transition-all duration-500 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
+      className={`fixed z-60 inset-0 flex items-center justify-center transition-all duration-500 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
     >
       {/* backdrop */}
       <div

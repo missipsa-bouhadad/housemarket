@@ -35,9 +35,9 @@ export default function Modal({
       />
 
       {/* modal */}
-      <div className={`relative z-10 bg-white rounded-2xl max-w-xl w-full p-6`}>
+      <div className={`relative z-10 bg-white rounded-2xl max-w-xl w-full`}>
         {/* header */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-b border-primary px-6 py-2">
           <p className="font-semibold">{title}</p>
           <button
             onClick={onClose}
@@ -48,9 +48,7 @@ export default function Modal({
         </div>
 
         {/* content */}
-        <div className="p-6">
-            {children}
-        </div>
+        <div className="px-6 py-2">{children}</div>
       </div>
     </div>
   );

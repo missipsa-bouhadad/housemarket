@@ -79,7 +79,7 @@ export default function RegisterModal() {
           <Input
             id="register-name"
             label="Name"
-            name="Name"
+            name="name"
             value={values.name}
             error={errors.name}
             onChange={handleChange}
@@ -88,7 +88,7 @@ export default function RegisterModal() {
           <Input
             id="register-email"
             label="Email"
-            name="Email"
+            name="email"
             value={values.email}
             error={errors.email}
             onChange={handleChange}
@@ -97,7 +97,7 @@ export default function RegisterModal() {
           <Input
             id="register-password"
             label="Password"
-            name="Password"
+            name="password"
             value={values.password}
             error={errors.password}
             onChange={handleChange}

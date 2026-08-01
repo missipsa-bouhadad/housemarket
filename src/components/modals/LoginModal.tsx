@@ -81,7 +81,7 @@ export default function LoginModal() {
           <Input
             id="login-email"
             label="Email"
-            name="Email"
+            name="email"
             value={values.email}
             error={errors.email}
             onChange={handleChange}
@@ -90,7 +90,7 @@ export default function LoginModal() {
           <Input
             id="login-password"
             label="Password"
-            name="Password"
+            name="password"
             value={values.password}
             error={errors.password}
             onChange={handleChange}

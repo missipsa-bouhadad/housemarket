@@ -12,7 +12,7 @@ interface InputValues {
   password: string;
 }
 
-type InputErros = Partial<Record<keyof InputValues, string>>;
+type InputErrors = Partial<Record<keyof InputValues, string>>;
 
 export default function LoginModal() {
   const { openRegister, closeLogin, isLogginOpen } = useAuthModal();
@@ -21,7 +21,7 @@ export default function LoginModal() {
     password: "",
   });
   const [loading, setLoading] = useState();
-  const [errors, setErrors] = useState<InputErros>({});
+  const [errors, setErrors] = useState<InputErrors>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,7 +38,7 @@ export default function LoginModal() {
   };
 
   const validate = () => {
-    const newErrors: InputErros = {};
+    const newErrors: InputErrors = {};
 
     // validate email
     if (values.email.trim() === "") {

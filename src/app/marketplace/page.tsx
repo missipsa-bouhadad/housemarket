@@ -1,4 +1,5 @@
 import FrontendLayout from "@/components/layout/FrontendLayout";
+import FilterButton from "@/components/marketplace/FilterButton";
 import Navbar from "@/components/navbar/Navbar";
 import PropertyCard from "@/components/properties/PropertyCard";
 import Button from "@/components/ui/Button";
@@ -13,9 +14,7 @@ export default function MarketPlace() {
         {/* header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="font-bold text-primary text-2xl">Explore</h2>
-          <Button variant="outline" icon={<HiAdjustmentsHorizontal />}>
-            Filter
-          </Button>
+          <FilterButton/>
         </div>
 
         {/* properties grid */}

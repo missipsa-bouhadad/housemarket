@@ -148,6 +148,7 @@ export default function CreatePropertyModal() {
                 name="sqft"
                 value={area}
                 type="number"
+                min={0}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setArea(e.target.value)
                 }
@@ -208,6 +209,7 @@ export default function CreatePropertyModal() {
               <Input
                 name="price"
                 type="number"
+                min={0}
                 value={price}
                 label={listingType === "rent" ? "Monthly Rent" : "Sale Price"}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

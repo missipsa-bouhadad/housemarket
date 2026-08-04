@@ -36,7 +36,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
             </h1>
 
             {/* features */}
-            <div className="flex gap-4 items-center mt-8">
+            <div className="flex flex-wrap gap-4 items-center mt-8">
               <div className="flex justify-center items-center px-4 py-2 rounded-2xl shadow-[0_0_5px_rgba(55,65,81,0.6)]">
                 <span className="mr-2">
                   <FaLocationDot className="w-5 h-4" />

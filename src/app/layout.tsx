@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import {Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import RegisterModal from "@/components/modals/RegisterModal";
 import LoginModal from "@/components/modals/LoginModal";
 import CreatePropertyModal from "@/components/modals/CreatePropertyModal";
 import FilterModal from "@/components/modals/FilterModal";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
-  variable : "--font-poppins",
-  subsets : ["latin"],
-  weight : ["100", "200", "300", "400", "500", "600", "700", "800"]
-})
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
   title: "House Market",
@@ -23,11 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${poppins.className} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-background"><RegisterModal/><LoginModal/><CreatePropertyModal/><FilterModal/>{children}</body>
+    <html lang="en" className={`${poppins.className} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-background">
+        <RegisterModal />
+        <LoginModal />
+        <CreatePropertyModal />
+        <FilterModal />
+        <Toaster/>
+        {children}
+      </body>
     </html>
   );
 }

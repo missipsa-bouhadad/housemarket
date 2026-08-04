@@ -6,6 +6,9 @@ import { useState } from "react";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import { FcGoogle } from "react-icons/fc";
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface InputValues {
   email: string;
@@ -15,12 +18,13 @@ interface InputValues {
 type InputErrors = Partial<Record<keyof InputValues, string>>;
 
 export default function LoginModal() {
+  const router = useRouter();
   const { openRegister, closeLogin, isLogginOpen } = useAuthModal();
   const [values, setValues] = useState<InputValues>({
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<InputErrors>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,12 +64,43 @@ export default function LoginModal() {
 
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length === 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return Object.keys(newErrors).length === 0
   };
+
+  const onSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if(!validate()) return
+
+    setLoading(true)
+
+    try {
+      const { error } = await authClient.signIn.email({
+        email: values.email,
+        password: values.password,
+      });
+
+      if(error){
+        toast.error(error.message as string)
+        return
+      }
+
+      toast.success("Login successful");
+      router.refresh();
+
+      setValues({ email: "", password: "" });
+      closeLogin()
+
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setLoading(false)
+    }
+  } 
 
   return (
     <Modal title={"Login"} isOpen={isLogginOpen} onClose={closeLogin}>
@@ -77,7 +112,7 @@ export default function LoginModal() {
         </div>
 
         {/* inputs */}
-        <form className="space-y-6">
+        <form onSubmit={onSubmit} className="space-y-6">
           <Input
             id="login-email"
             label="Email"

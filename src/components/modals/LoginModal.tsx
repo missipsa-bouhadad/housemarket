@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { SignInWithGoogle } from "@/services/SignInWithGoogle";
 
 interface InputValues {
   email: string;
@@ -160,6 +161,7 @@ export default function LoginModal() {
           loading={loading}
           fullWidth
           disabled={loading}
+          onClick={SignInWithGoogle}
         >
           Continue With Google
         </Button>

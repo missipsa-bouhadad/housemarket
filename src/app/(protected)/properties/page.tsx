@@ -1,7 +1,9 @@
 import FrontendLayout from "@/components/layout/FrontendLayout";
 import Navbar from "@/components/navbar/Navbar";
 import PropertyCard from "@/components/properties/PropertyCard";
+import CardSkeleton from "@/components/skeletons/CardSkeleton";
 import { getUserProperties } from "@/server-actions/getUserProperties";
+import { Suspense } from "react";
 
 async function Properties() {
   const properties = await getUserProperties();
@@ -32,7 +34,9 @@ export default function page() {
 
         {/* properties grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Properties />
+          <Suspense fallback={<CardSkeleton/>}>
+            <Properties />
+          </Suspense>
         </div>
       </section>
     </FrontendLayout>

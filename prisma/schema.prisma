@@ -17,7 +17,7 @@ model Property {
   price Int
   bedrooms      Int
   bathrooms     Int
-  parkingSpaces Int?
+  parkingSpaces Int @default(1)
   area          Int?
   location String
   address  String

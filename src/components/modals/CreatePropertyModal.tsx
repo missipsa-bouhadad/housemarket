@@ -202,7 +202,7 @@ export default function CreatePropertyModal() {
                 onChange={setBathrooms}
               />
               <Counter
-                title={"Parcking Spaces (optional)"}
+                title={"Parcking Spaces"}
                 subTitle="How many parcking spaces ?"
                 value={parkingSpaces}
                 onChange={setParckingSpaces}

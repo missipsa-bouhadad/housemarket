@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
         price: Number(price),
         bedrooms: Number(bedrooms),
         bathrooms: Number(bathrooms),
-        parkingSpaces: parkingSpaces ? Number(parkingSpaces) : null,
+        parkingSpaces: parkingSpaces ? Number(parkingSpaces) : 1,
         area: area ? Number(area) : null,
         location,
         address,

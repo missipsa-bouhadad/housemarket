@@ -10,6 +10,8 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useAuthModal } from "@/store/useAuthModal";
 import { useCreatePropertyModal } from "@/store/useCreatePropretyModal";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 interface NavbarProps {
   variant?: "solid" | "transparent";
@@ -18,10 +20,19 @@ interface NavbarProps {
 export const navLinks = ["Home", "Properties", "MarketPlace"];
 
 export default function Navbar({ variant = "transparent" }: NavbarProps) {
+  const router = useRouter()
+
   const isTransparent = variant === "transparent";
   const [isOpen, setIsOpen] = useState(false);
-  const {isLogginOpen,openLogin} = useAuthModal()
+  const { isLogginOpen, openLogin } = useAuthModal();
   const { openCreateProperty } = useCreatePropertyModal();
+
+  const { data, isPending } = authClient.useSession();
+
+  const handleLogout = async () => {
+    await authClient.signOut()
+    router.refresh()
+  }
 
   return (
     <section
@@ -76,19 +87,31 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
 
           {/* Buttons */}
           <div className="hidden lg:flex gap-4 items-center">
-            <Button
-              variant={isTransparent ? "primary" : "outline"}
-              onClick={openLogin}
-            >
-              Login
-            </Button>
-            <Button
-              variant={isTransparent ? "primary" : "outline"}
-              icon={<FaHome />}
-              onClick={openCreateProperty}
-            >
-              Add property
-            </Button>
+            {data ? (
+              <Button
+                variant={isTransparent ? "primary" : "outline"}
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                variant={isTransparent ? "primary" : "outline"}
+                onClick={openLogin}
+              >
+                Login
+              </Button>
+            )}
+
+            {!isPending && data && (
+              <Button
+                variant={isTransparent ? "primary" : "outline"}
+                icon={<FaHome />}
+                onClick={openCreateProperty}
+              >
+                Add property
+              </Button>
+            )}
           </div>
 
           {/* Button of Mobile Menu */}
@@ -130,19 +153,31 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
               ))}
 
               <div className="flex flex-col gap-4 mt-2">
-                <Button
-                  variant={isTransparent ? "primary" : "outline"}
-                  onClick={openLogin}
-                >
-                  Login
-                </Button>
-                <Button
-                  variant={isTransparent ? "primary" : "outline"}
-                  icon={<FaHome />}
-                  onClick={openCreateProperty}
-                >
-                  Add property
-                </Button>
+                {data ? (
+                  <Button
+                    variant={isTransparent ? "primary" : "outline"}
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                ) : (
+                  <Button
+                    variant={isTransparent ? "primary" : "outline"}
+                    onClick={openLogin}
+                  >
+                    Login
+                  </Button>
+                )}
+
+                {!isPending && data && (
+                  <Button
+                    variant={isTransparent ? "primary" : "outline"}
+                    icon={<FaHome />}
+                    onClick={openCreateProperty}
+                  >
+                    Add property
+                  </Button>
+                )}
               </div>
             </div>
           </div>

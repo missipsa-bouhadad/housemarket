@@ -1,5 +1,5 @@
 import { prisma } from "@/database/db";
-import { getCurrentUser } from "@/server-actions/getCurrentServer";
+import { getCurrentUser } from "@/server-actions/getCurrentUser";
 import {
   CloudinaryUploadResult,
   uploadToCloudinary,

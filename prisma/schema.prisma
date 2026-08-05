@@ -17,13 +17,13 @@ model Property {
   price Int
   bedrooms      Int
   bathrooms     Int
-  parkingSpaces Int
+  parkingSpaces Int?
   area          Int?
   location String
   address  String
   image String
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
   ownerId String
   owner User @relation(fields: [ownerId], references: [id],onDelete: Cascade)
 

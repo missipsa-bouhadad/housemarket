@@ -11,6 +11,9 @@ import Input from "../ui/Input";
 import Counter from "../properties/Counter";
 import ImageUpload from "../properties/ImageUpload";
 import { FiChevronDown } from "react-icons/fi";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const STEPS = {
   TYPE: 0,
@@ -22,17 +25,18 @@ const STEPS = {
 };
 
 export default function CreatePropertyModal() {
+  const router = useRouter();
   const { isOpen, closeCreateProperty } = useCreatePropertyModal();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [selected, setSelected] = useState<PropertyType>();
+  const [selected, setSelected] = useState<PropertyType>(propertyTypes[0]);
 
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
 
   const [bedrooms, setBedrooms] = useState(1);
   const [bathrooms, setBathrooms] = useState(1);
-  const [parckingSpaces, setParckingSpaces] = useState(1);
+  const [parkingSpaces, setParckingSpaces] = useState(1);
   const [area, setArea] = useState("");
 
   const [propertyTitle, setPropertyTitle] = useState("");
@@ -69,7 +73,68 @@ export default function CreatePropertyModal() {
     setPreview(URL.createObjectURL(file));
   };
 
-  const createListing = async () => {};
+  const createListing = async () => {
+    try {
+      setLoading(true);
+
+      const formData = new FormData();
+      formData.append("title", propertyTitle);
+      formData.append("description", propertyDescription);
+      formData.append("propertyType", selected.slug);
+      formData.append("listingType", listingType);
+      formData.append("price", price);
+      formData.append("bedrooms", bedrooms.toString());
+      formData.append("bathrooms", bathrooms.toString());
+      formData.append("parkingSpaces", parkingSpaces.toString());
+      formData.append("area", area);
+      formData.append("location", location);
+      formData.append("address", address);
+      if (image) {
+        formData.append("image", image);
+      }
+
+      await axios.post("/api/properties", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      toast.success("Property created successfully");
+      router.replace("/properties");
+      handleClose();
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data.error);
+      }
+      return;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleClose = () => {
+    setStep(0);
+    setSelected(propertyTypes[0]);
+
+    setLocation("");
+    setAddress("");
+
+    setBedrooms(1);
+    setBathrooms(1);
+    setParckingSpaces(1);
+    setArea("");
+
+    setPropertyTitle("");
+    setPropertyDescription("");
+
+    setImage(null);
+    setPreview(null);
+
+    setListingType("sale");
+    setPrice("");
+
+    closeCreateProperty();
+  };
 
   return (
     <Modal
@@ -137,14 +202,14 @@ export default function CreatePropertyModal() {
                 onChange={setBathrooms}
               />
               <Counter
-                title={"Parcking Spaces"}
+                title={"Parcking Spaces (optional)"}
                 subTitle="How many parcking spaces ?"
-                value={parckingSpaces}
+                value={parkingSpaces}
                 onChange={setParckingSpaces}
               />
               <div className="mb-5"></div>
               <Input
-                label="Property Area"
+                label="Property Area (optional)"
                 name="sqft"
                 value={area}
                 type="number"

@@ -27,7 +27,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         {/* badge */}
         <div className="absolute top-4 left-4 rounded-full z-20 bg-white/70 px-3 py-1">
           <span className="font-semibold text-primary">
-            {property.status === "sale" ? "For Sale" : "For Rent"}
+            {property.listingType === "sale" ? "For Sale" : "For Rent"}
           </span>
         </div>
 
@@ -40,7 +40,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
               {property.location}
             </p>
             <div className="text-white rounded-xl bg-primary px-2 py-1">
-              {property.type}
+              {property.propertyType}
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         {/* price */}
         <div className="absolute bottom-4 left-4 right-4 z-20 rounded-2xl backdrop-blur-2xl bg-white/10 px-4 py-2 w-fit">
           <div className="flex items-start">
-            {property.status === "rent" ? (
+            {property.listingType === "rent" ? (
               <h3 className=" text-white text-3xl font-semibold">
                 {property.price.toLocaleString()} €
                 <span className="font-medium text-sm text-white/60">

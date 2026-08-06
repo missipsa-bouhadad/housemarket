@@ -6,6 +6,10 @@ import {
 } from "@/services/cloudinary";
 import { NextRequest, NextResponse } from "next/server";
 
+function normalizePropertyType(value: string): string {
+  return value.trim().toLowerCase();
+}
+
 export async function POST(req: NextRequest) {
   try {
     const currentUser = await getCurrentUser();
@@ -74,4 +78,78 @@ export async function POST(req: NextRequest) {
       { status: 500 },
     );
   }
+}
+
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
+
+  const search = searchParams.get("search");
+  const propertyType = searchParams.get("propertyType");
+  const location = searchParams.get("location");
+  const address = searchParams.get("address");
+  const minPrice = searchParams.get("minPrice");
+  const maxPrice = searchParams.get("maxPrice");
+
+  const properties = await prisma.property.findMany({
+    where: {
+      ...(propertyType && {
+        propertyType: normalizePropertyType(propertyType),
+      }),
+      ...(location && {
+        location: {
+          contains: location,
+          mode: "insensitive",
+        },
+      }),
+      ...(address && {
+        address: {
+          contains: address,
+          mode: "insensitive",
+        },
+      }),
+      ...(minPrice && {
+        price: {
+          gte: Number(minPrice),
+        },
+      }),
+      ...(maxPrice && {
+        price: {
+          lte: Number(maxPrice),
+        },
+      }),
+      ...(search && {
+        OR: [
+          {
+            title: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+          {
+            description: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+          {
+            location: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+          {
+            address: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+        ],
+      }),
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return NextResponse.json(properties)
 }

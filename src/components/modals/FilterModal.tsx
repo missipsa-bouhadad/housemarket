@@ -3,6 +3,7 @@
 import { useFilterModal } from "@/store/useFilterModal";
 import Modal from "./Modal";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Button from "../ui/Button";
 import PropertyTypeCard from "../properties/PropertyTypeCard";
 import { propertyTypes } from "@/constants/PropertyTypes";
@@ -16,6 +17,7 @@ const STEPS = {
 };
 
 export default function FilterModal() {
+  const router = useRouter();
   const { isOpen, close } = useFilterModal();
   const [step, setStep] = useState<number>(0);
   const [loading, setLoading] = useState(false);
@@ -41,7 +43,30 @@ export default function FilterModal() {
     }
   };
 
-  const applyFilter = () => {};
+  const applyFilter = async () => {
+    setLoading(true);
+    const params = new URLSearchParams();
+
+    if (selected) params.set("propertyType", selected.slug);
+    if (location.trim()) params.set("location", location.trim());
+    if (address.trim()) params.set("address", address.trim());
+    if (minPrice) params.set("minPrice", minPrice);
+    if (maxPrice) params.set("maxPrice", maxPrice);
+
+    const query = params.toString();
+    router.push(query ? `/marketplace?${query}` : "/marketplace");
+    close();
+    setLoading(false);
+  };
+
+  const resetFilters = () => {
+    setSelected(undefined);
+    setLocation("");
+    setAddress("");
+    setMinPrice("");
+    setMaxPrice("");
+    setStep(STEPS.TYPE);
+  };
   return (
     <Modal title={"Filter properties"} isOpen={isOpen} onClose={close}>
       <div className="my-4">
@@ -127,6 +152,14 @@ export default function FilterModal() {
             Back
           </Button>
         )}
+
+        <Button
+          fullWidth
+          className="border border-gray-300"
+          onClick={resetFilters}
+        >
+          Reset
+        </Button>
 
         <Button
           fullWidth

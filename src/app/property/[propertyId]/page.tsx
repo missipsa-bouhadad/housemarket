@@ -1,6 +1,5 @@
 import FrontendLayout from "@/components/layout/FrontendLayout";
 import Navbar from "@/components/navbar/Navbar";
-import { properties } from "@/constants/dummyProperties";
 import { notFound } from "next/navigation";
 import { MdOutlineBed } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
@@ -8,14 +7,16 @@ import { PiHouseLine } from "react-icons/pi";
 import { PiBathtub } from "react-icons/pi";
 import Image from "next/image";
 import EmailForm from "@/components/properties/EmailForm";
+import { getProperty } from "@/server-actions/getProperty";
 
 interface PropertyPageProps {
   params: Promise<{ propertyId: string }>;
 }
 
+
 export default async function PropertyPage({ params }: PropertyPageProps) {
   const { propertyId } = await params;
-  const property = properties.find((p) => p.id === propertyId);
+  const property = await getProperty(propertyId)
   if (!property) {
     notFound();
   }
@@ -28,7 +29,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           {/* left */}
           <div className="flex flex-col">
             <p className="text-primary tracking-[0.15em] text-sm font-semibold uppercase w-fit p-2 rounded-2xl">
-              {property.type === "sale" ? "For Sale" : "For Rent"}
+              {property.listingType === "sale" ? "For Sale" : "For Rent"}
             </p>
 
             <h1 className="mt-3 text-3xl lg:text-4xl font-bold">
@@ -69,7 +70,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
 
           {/* right (price) */}
           <div className="flex flex-col items-center text-primary border border-primary/20 p-2 lg:p-4 rounded-2xl text-3xl lg:text-4xl font-bold shadow-[0_0_5px_rgba(55,65,81,0.6)]">
-            {property.status === "rent" ? (
+            {property.listingType === "rent" ? (
               <h3>
                 {property.price.toLocaleString()} €
                 <span className="font-medium text-sm text-white/60">

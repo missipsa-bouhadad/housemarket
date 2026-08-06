@@ -28,5 +28,6 @@ export async function getAllProperties(params?:GetAllPropertiesParams) {
         return response.data;
     } catch (error) {
         console.log("failed to fetch properties in marketplace page")
+        return []
     }
 }

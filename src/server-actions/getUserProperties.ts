@@ -17,5 +17,6 @@ export async function getUserProperties () {
         return propreties
     } catch (error) {
         console.log("failed to fetch propreties")
+        return [];
     }
 }

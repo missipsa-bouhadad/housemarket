@@ -71,7 +71,7 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
             {navLinks.map((item) => (
               <Link
                 key={item}
-                href={item === "Home" ? "/" : `${item.toLowerCase()}`}
+                href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                 className={clsx(
                   "font-semibold text-sm inline-block transition-all duration-300 ease-in-out hover:scale-120 hover:tracking-wide",
                   {
@@ -139,7 +139,7 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
               {navLinks.map((item) => (
                 <Link
                   key={item}
-                  href={item === "Home" ? "/" : `${item.toLowerCase()}`}
+                  href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                   className={clsx(
                     "font-semibold text-sm inline-block transition-all duration-300 ease-in-out hover:scale-105 hover:tracking-wide",
                     {

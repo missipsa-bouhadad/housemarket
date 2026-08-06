@@ -2,19 +2,14 @@ import FrontendLayout from "@/components/layout/FrontendLayout";
 import Navbar from "@/components/navbar/Navbar";
 import PropertyCard from "@/components/properties/PropertyCard";
 import CardSkeleton from "@/components/skeletons/CardSkeleton";
+import EmptyState from "@/components/ui/EmptyState";
 import { getUserProperties } from "@/server-actions/getUserProperties";
 import { Suspense } from "react";
 
 async function Properties() {
   const properties = await getUserProperties();
   if(properties?.length === 0){
-    return (
-      <div className="col-span-full flex-1 flex items-center justify-center">
-        <p className="text-muted-foreground text-lg">
-          No properties found
-        </p>
-      </div>
-    );
+    return <EmptyState title="No Properties Found !"/>
   } else {
     return properties?.map((property) => (
       <PropertyCard key={property.id} property={property} />

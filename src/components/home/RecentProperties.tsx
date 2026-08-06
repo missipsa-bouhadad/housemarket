@@ -1,7 +1,21 @@
-import { properties } from "@/constants/dummyProperties";
 import PropertyCard from "../properties/PropertyCard";
+import { getRecentProperties } from "@/server-actions/getRecentProperties";
+import EmptyState from "../ui/EmptyState";
+import { Suspense } from "react";
+import CardSkeleton from "../skeletons/CardSkeleton";
 
-export default function () {
+async function Properties() {
+  const recentProperties = await getRecentProperties();
+  if(recentProperties?.length === 0){
+    return <EmptyState title="No Recent Properties Found !"/>
+  }else{
+    return recentProperties?.map((property) => (
+      <PropertyCard key={property.id} property={property} />
+    ));
+  }
+}
+
+export default function RecentProperties() {
   return (
     <section className="py-24 ">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -22,9 +36,9 @@ export default function () {
 
         {/* properties grid */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {properties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
+          <Suspense fallback={<CardSkeleton/>}>
+            <Properties />
+          </Suspense>
         </div>
       </div>
     </section>

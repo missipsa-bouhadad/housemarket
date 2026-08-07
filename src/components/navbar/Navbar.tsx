@@ -24,7 +24,7 @@ export default function Navbar({ variant = "transparent" }: NavbarProps) {
 
   const isTransparent = variant === "transparent";
   const [isOpen, setIsOpen] = useState(false);
-  const { isLogginOpen, openLogin } = useAuthModal();
+  const { openLogin } = useAuthModal();
   const { openCreateProperty } = useCreatePropertyModal();
 
   const { data, isPending } = authClient.useSession();

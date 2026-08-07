@@ -15,7 +15,7 @@ export async function getRecentProperties() {
 
         return properties
     } catch (error) {
-        console.log("failed te fetch recent properties")
+        console.log("failed te fetch recent properties",error)
         return [];
     }
 }

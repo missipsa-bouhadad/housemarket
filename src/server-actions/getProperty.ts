@@ -24,7 +24,7 @@ export async function getProperty(propertyId:string) {
 
         return property;
     } catch (error) {
-        console.log("failed to fetch property")
+        console.log("failed to fetch property",error)
         return null
     }
 }

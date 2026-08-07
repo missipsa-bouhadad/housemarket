@@ -2,7 +2,6 @@ import RecentProperties from "@/components/home/RecentProperties";
 import SearchBox from "@/components/home/SearchBox";
 import FrontendLayout from "@/components/layout/FrontendLayout";
 import Navbar from "@/components/navbar/Navbar";
-import { FiSearch } from "react-icons/fi";
 
 export default function Home() {
   return (

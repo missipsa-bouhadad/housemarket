@@ -97,7 +97,15 @@ async function PropertyDetails({ propertyId }: { propertyId: string }) {
         </div>
 
         {/* right */}
-        <EmailForm />
+        {property.owner && (
+          <EmailForm
+            email={property.owner.email}
+            name={property.owner.name}
+            image={property.owner.image || "/images/avatar.png"}
+            propertyTitle={property.title}
+            propertyPrice={property.price}
+          />
+        )}
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { useAuthModal } from "@/store/useAuthModal";
 import Modal from "./Modal";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
+import PasswordInput from "../ui/PasswordInput";
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
@@ -130,7 +131,7 @@ export default function RegisterModal() {
             onChange={handleChange}
             disabled={loading}
           />
-          <Input
+          <PasswordInput
             id="register-password"
             label="Password"
             name="password"

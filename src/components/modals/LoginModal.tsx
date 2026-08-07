@@ -4,6 +4,7 @@ import { useAuthModal } from "@/store/useAuthModal";
 import Modal from "./Modal";
 import { useState } from "react";
 import Input from "../ui/Input";
+import PasswordInput from "../ui/PasswordInput";
 import Button from "../ui/Button";
 import { FcGoogle } from "react-icons/fc";
 import { authClient } from "@/lib/auth-client";
@@ -123,7 +124,7 @@ export default function LoginModal() {
             onChange={handleChange}
             disabled={loading}
           />
-          <Input
+          <PasswordInput
             id="login-password"
             label="Password"
             name="password"

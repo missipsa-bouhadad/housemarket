@@ -36,7 +36,7 @@ async function MarketPlace({ searchParams }: MarketPlaceProps) {
   });
 
   if (properties.length === 0) {
-    return <EmptyState title="No Matching Properties !" />;
+    return <EmptyState title="No Matching Properties !" filter />;
   }
 
   return (

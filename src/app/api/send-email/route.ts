@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     await resend.emails.send({
       from: process.env.EMAIL_FROM!,
       // in dev mode, replace with the email used to sign up on Resend (free accounts can only send to the account owner).
-      to: "your_email",
+      to: ownerEmail,
       subject: `property inquiry from ${senderName}`,
       react: InquiryEmail({ownerName,propertyTitle,propertyPrice,senderName,senderEmail,senderPhone,senderMessage})
     });

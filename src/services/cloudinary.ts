@@ -28,3 +28,20 @@ export async function uploadToCloudinary(
     throw new Error("Failed to upload new image");
   }
 }
+
+// extracts the public_id from a secure_url
+function getPublicIdFromUrl(url: string): string | null {
+  const match = url.match(/\/upload\/(?:v\d+\/)?(.+)\.[a-z0-9]+$/i);
+  return match ? match[1] : null;
+}
+
+export async function deleteFromCloudinary(imageUrl: string): Promise<void> {
+  const publicId = getPublicIdFromUrl(imageUrl);
+  if (!publicId) return;
+
+  try {
+    await cloudiary.uploader.destroy(publicId);
+  } catch (error) {
+    console.log("Cloudinary delete error", error);
+  }
+}

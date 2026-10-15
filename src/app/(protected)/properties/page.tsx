@@ -12,7 +12,7 @@ async function Properties() {
     return <EmptyState title="No Properties Found !"/>
   } else {
     return properties?.map((property) => (
-      <PropertyCard key={property.id} property={property} />
+      <PropertyCard key={property.id} property={property} canDelete />
     ));
   }
 }
